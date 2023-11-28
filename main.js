@@ -138,19 +138,24 @@ for (let i = 0; i < posts.length; i++) {
 
 
     // Tasto Like
-    postLikesCta.innerHTML = `
+
+    const likeButton = `
     <a class="like-button  js-like-button" href="#" data-postid="1">
     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
     <span class="like-button__label">Mi Piace</span>
     </a>
     `
 
+    postLikesCta.innerHTML = likeButton
+
+   
+
     // Like Counter 
     const postLikesCounter = document.createElement('div');
     postLikesCounter.classList.add('likes__counter');
     postLikes.appendChild(postLikesCounter);
 
-    const likesCounter = posts[i].likes
+    let likesCounter = posts[i].likes
 
 
     postLikesCounter.innerHTML = `
@@ -159,12 +164,33 @@ for (let i = 0; i < posts.length; i++) {
 
 
 
+   
+    
+    function liked(likeButton) {
+        return likeButton.addEventListener('click', () => {
+                likeButton.classList.toggle('like-button--liked');
 
 
+               if (likeButton.classList.contains('like-button--liked')){
+                postLikesCounter.innerHTML = `
+                Piace a <b id="like-counter-1" class="js-likes-counter">${likesCounter++} </b> persone`
 
+               }
+               else {
+                postLikesCounter.innerHTML = `
+                Piace a <b id="like-counter-1" class="js-likes-counter">${likesCounter--} </b> persone`
 
+               }
+                
+            });
+        }
+
+    
+
+    liked(postLikesCta.querySelector('.js-like-button'));
 
 
 
 
 }
+
