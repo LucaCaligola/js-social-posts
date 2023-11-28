@@ -38,7 +38,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": "https://jeopardygirl.files.wordpress.com/2007/04/happy-face-happyface-smiley-300x300.gif"
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -56,45 +56,115 @@ const posts = [
     }
 ];
 
-// Creazione primo post 
-const postList = document.querySelector('.posts-list');
-const post = document.createElement('div');
-post.classList.add('post')
-postList.appendChild(post);
 
-const postHeader = document.createElement('div');
-postHeader.classList.add('post__header');
-post.appendChild(postHeader);
+for (let i = 0; i < posts.length; i++) {
 
-const postMeta = document.createElement('div');
-postMeta.classList.add('post-meta');
-postHeader.appendChild(postMeta);
+    // Creazione primo post 
+    const postList = document.querySelector('.posts-list');
+    const post = document.createElement('div');
+    post.classList.add('post')
+    postList.appendChild(post);
 
+    const postHeader = document.createElement('div');
+    postHeader.classList.add('post__header');
+    post.appendChild(postHeader);
 
-const postMetaIcon = document.createElement('div');
-postMetaIcon.classList.add('post-meta__icon');
-postMeta.appendChild(postMetaIcon);
-
-// Inseriamo l'immagine nel post
-const img = document.createElement('img');
-img.classList.add('profile-pic');
-postMetaIcon.appendChild(img);
-
-img.src = posts[0].author.image;
-img.alt = posts[0].author.name;
-
-// Inseriamo i metadata
-const postMetaData = document.createElement('div');
-postMetaData.classList.add('post-meta__data');
-postMeta.appendChild(postMetaData);
-
-const postMetaAuthor = document.createElement('div');
-postMetaAuthor.classList.add('post-meta__author');
-postMeta.appendChild(postMetaAuthor);
-
-postMetaAuthor.textContent = posts[0].author.name;
+    const postMeta = document.createElement('div');
+    postMeta.classList.add('post-meta');
+    postHeader.appendChild(postMeta);
 
 
+    const postMetaIcon = document.createElement('div');
+    postMetaIcon.classList.add('post-meta__icon');
+    postMeta.appendChild(postMetaIcon);
+
+
+    // Inseriamo i dati dell'autore
+    const AuthorImg = document.createElement('img');
+    AuthorImg.classList.add('profile-pic');
+    postMetaIcon.appendChild(AuthorImg);
+
+    AuthorImg.src = posts[i].author.image;
+    AuthorImg.alt = posts[i].author.name;
+
+
+    // Inseriamo i metadata nome profilo e data post
+    const postMetaData = document.createElement('div');
+    postMetaData.classList.add('post-meta__data');
+    postMeta.appendChild(postMetaData);
+
+    const postMetaAuthor = document.createElement('div');
+    postMetaAuthor.classList.add('post-meta__author');
+    postMetaData.appendChild(postMetaAuthor);
+
+    postMetaAuthor.textContent = posts[i].author.name;
+
+    const postMetaTime = document.createElement('div');
+    postMetaTime.classList.add('post-meta__time');
+    postMetaData.appendChild(postMetaTime);
+
+    postMetaTime.textContent = posts[i].created;
+
+
+    // Inseriamo il contenuto foto e testo del post
+    const postText = document.createElement('div');
+    postText.classList.add('post__text')
+    post.appendChild(postText)
+
+    postText.textContent = posts[i].content;
+
+    const postImg = document.createElement('div');
+    postImg.classList.add('post__image');
+    post.appendChild(postImg);
+
+    // Immagine Post
+    const postPicture = document.createElement('img');
+    postImg.appendChild(postPicture);
+    postPicture.src = posts[i].media;
+
+
+    // Inseriamo il footer dei post 
+    const postFooter = document.createElement('div');
+    postFooter.classList.add('post__footer');
+    post.appendChild(postFooter);
+
+    const postLikes = document.createElement('div');
+    postLikes.classList.add('likes', 'js-likes');
+    postFooter.appendChild(postLikes);
+
+    const postLikesCta = document.createElement('div');
+    postLikesCta.classList.add('likes__cta');
+    postLikes.appendChild(postLikesCta);
+
+
+    // Tasto Like
+    postLikesCta.innerHTML = `
+    <a class="like-button  js-like-button" href="#" data-postid="1">
+    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+    <span class="like-button__label">Mi Piace</span>
+    </a>
+    `
+
+    // Like Counter 
+    const postLikesCounter = document.createElement('div');
+    postLikesCounter.classList.add('likes__counter');
+    postLikes.appendChild(postLikesCounter);
+
+    const likesCounter = posts[i].likes
+
+
+    postLikesCounter.innerHTML = `
+    Piace a <b id="like-counter-1" class="js-likes-counter">${likesCounter}</b> persone`
 
 
 
+
+
+
+
+
+
+
+
+
+}
