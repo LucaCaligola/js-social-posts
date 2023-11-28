@@ -55,3 +55,46 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+// Creazione primo post 
+const postList = document.querySelector('.posts-list');
+const post = document.createElement('div');
+post.classList.add('post')
+postList.appendChild(post);
+
+const postHeader = document.createElement('div');
+postHeader.classList.add('post__header');
+post.appendChild(postHeader);
+
+const postMeta = document.createElement('div');
+postMeta.classList.add('post-meta');
+postHeader.appendChild(postMeta);
+
+
+const postMetaIcon = document.createElement('div');
+postMetaIcon.classList.add('post-meta__icon');
+postMeta.appendChild(postMetaIcon);
+
+// Inseriamo l'immagine nel post
+const img = document.createElement('img');
+img.classList.add('profile-pic');
+postMetaIcon.appendChild(img);
+
+img.src = posts[0].author.image;
+img.alt = posts[0].author.name;
+
+// Inseriamo i metadata
+const postMetaData = document.createElement('div');
+postMetaData.classList.add('post-meta__data');
+postMeta.appendChild(postMetaData);
+
+const postMetaAuthor = document.createElement('div');
+postMetaAuthor.classList.add('post-meta__author');
+postMeta.appendChild(postMetaAuthor);
+
+postMetaAuthor.textContent = posts[0].author.name;
+
+
+
+
+
